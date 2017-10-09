@@ -2,20 +2,18 @@
 Simulation Traffic Control
 
 
-###Scope 
+## 1.Scope 
 
-###One component diagram
+## 2.One component diagram
 
-###technology
+## 3.technology
 
-###team roles
+## 4.team roles
 
-###Rough Plan
+## 5.Rough Plan
 
-###Create Epics
+## 6.Create Epics
 
-###Break down Epics in User Stories
+## 7.Break down Epics in User Stories
 
-###Develepment environment
-
-###Go
+## 8.Develepment environment

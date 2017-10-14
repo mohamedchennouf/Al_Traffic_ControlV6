@@ -1,4 +1,6 @@
-package BusinessPart;
+package visual;
+
+import BusinessPart.street;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +14,7 @@ public class City extends JPanel{
 
 
     public void paintComponent(Graphics g){
+        super.paintComponent(g);
         g.setColor(Color.white);
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
 

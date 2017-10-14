@@ -1,6 +1,7 @@
 package main;
 
 import BusinessPart.*;
+import visual.City;
 
 
 import java.awt.*;
@@ -44,7 +45,6 @@ public class Fenetre extends JFrame {
             }
 
 
-            city.revalidate();
             city.repaint();
 
         }

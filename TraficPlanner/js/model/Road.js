@@ -17,7 +17,7 @@ function setRoutes(){
 
         var request = {
             origin: startLoc[i],
-            destination: endLoc,
+            destination: Evenement.position,
             travelMode: travelMode
         };
 

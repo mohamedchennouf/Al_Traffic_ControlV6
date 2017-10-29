@@ -1,26 +1,43 @@
+var nbEvent = 0;
+var endLoc = null;
+
+
 
 function initialize() {
 
-    infowindow = new google.maps.InfoWindow({
-            size: new google.maps.Size(150,75)
-    });
-
-    var myOptions = {
-        zoom: 19,
-        //center: {lat: -33.8667, lng: 151.1955},
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+    var myOptions = {   // les options en l'occurence le zoom
+        zoom: 16,
+         mapTypeId: google.maps.MapTypeId.ROADMAP,
     };
-    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-
+    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions); // on crer un objet map
+    // code qui centre la carte sur Nice Etoile
     address = 'Nice Etoile,Nice'
-    geocoder = new google.maps.Geocoder();
+    var geocoder = new google.maps.Geocoder();
     geocoder.geocode( { 'address': address}, function(results, status) {
-        map.fitBounds(results[0].geometry.viewport);
+        if (status == 'OK') {
+        map.setCenter(results[0].geometry.location);
 
+        //ajout d'un évènement
+        map.addListener('click', function(e) {
+            if(nbEvent<1){
+                var nomEvent = prompt("Veuillez nous donner le nom de l'évènement que vous souhaiter ajouter");
+                var nbCar = prompt("Combien de véhicule souhaite aller à cette évènement ?");
+                Evenement.nom = nomEvent;
+                Evenement.nbCars = nbCar;
+                Evenement.position = e.latLng;
+                console.log(Evenement.decrire());
+                Evenement.placeEvenement(e.latLng, map);
+                map.setCenter(Evenement.position);
+                endLoc = Evenement.position;
+                nbEvent++;
+            }else{
+                alert("Actuellement vous ne pouvez mettre qu'un seul évènement");
+            }
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
     });
-    //createLight();
-
-    //createLight(latlng, label, html)
 }
 
 function animate(index,d) {
@@ -64,7 +81,7 @@ function animate(index,d) {
 //-------------------------------------------------------------------------
 
 function startAnimation(index) {
-    //console.log("timerHandle[index] " + timerHandle[index]);
+    console.log(polyline[index]);
     if (timerHandle[index]) clearTimeout(timerHandle[index]);
     eol[index]=polyline[index].Distance();
     map.setCenter(polyline[index].getPath().getAt(0));

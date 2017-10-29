@@ -2,6 +2,7 @@
  * Created by ThiernoMamadouCellou on 10/25/2017.
  */
 function setRoutes(){
+    if(nbEvent > 0){
     var directionsDisplay = new Array();
 
     for (var i=0; i< startLoc.length; i++){
@@ -92,6 +93,9 @@ function setRoutes(){
             startAnimation(routeNum);
 
         }
+    }
+    }else{
+        alert("Veuillez placer un évènement sur la carte avant lancer la simulation");
     }
 
 }

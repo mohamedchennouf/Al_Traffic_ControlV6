@@ -31,8 +31,6 @@ function createLight() {
  
     var myLatLng = {lat: data.lat, lng: data.long};
     for(var i = 0; i < data.length; i++){
-        //console.log(data.length);
-        //var lightLatLg = {lat: data[i].lat, lng: data[i].long};
         features.push({position: new google.maps.LatLng(data[i].lat,data[i].long),
             type:data[i].state ? "img/green.png" : "img/red.jpg" });
         //var image = data[i].state ? "img/green.png" : "img/red.jpg";

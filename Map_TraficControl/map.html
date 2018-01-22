@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+
+        var myData = null;
+
+        function loadJSON(callback) {
+
+            var xobj = new XMLHttpRequest();
+            xobj.overrideMimeType("application/json");
+            xobj.open('GET', 'map', true); // Replace 'my_data' with the path to your file
+            xobj.onreadystatechange = function () {
+                if (xobj.readyState == 4 && xobj.status == "200") {
+                    // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+                    callback(xobj.responseText);
+                }
+            };
+            xobj.send(null);
+        }
+
+        function buildMap(data) {
+            myData = JSON.parse(data);
+            var rues = myData.features;
+            var c = document.getElementById("mon_canvas");
+            var ctx = c.getContext("2d");
+            //c.style.transformOrigin = "7.2653077 43.71101";
+            ctx.scale(10, 10);
+            ctx.lineWidth = 0.5;
+            rues.forEach(function (rue, rueIndex) {
+                ctx.beginPath();
+                posX1 = rue.geometry.coordinates[0][0];
+                posX2 = rue.geometry.coordinates[0][1];
+                ctx.moveTo(posX1, posX2);
+                rue.geometry.coordinates.forEach(function (position, positionIndex) {
+                    ctx.lineTo(position[0], position[1]);
+                });
+                ctx.stroke();
+            });
+
+
+            c.addEventListener("click", function (event) {
+                
+                var posX = event.pageX / 10;
+                var posY = event.pageY / 10
+                ctx.moveTo(posX, posY);
+                ctx.arc(posX, posY, 0.5, 0, 2 * Math.PI);
+                ctx.strokeStyle = "red";
+                ctx.stroke();
+                //alert(event.pageX + " , " + event.pageY);
+            });
+
+        }
+
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * Math.floor(max));
+        }
+
+        function generatePositionVehicules() {
+             var c = document.getElementById("mon_canvas");
+            var ctx = c.getContext("2d");
+            var rueIndex = getRandomInt(myData.features.length);
+             var posIndex = getRandomInt(myData.features[rueIndex].geometry.coordinates.length);
+             var posXVehicule = myData.features[rueIndex].geometry.coordinates[posIndex][0];
+              var posYVehicule = myData.features[rueIndex].geometry.coordinates[posIndex][1];
+              console.log(posXVehicule+' , '+ posYVehicule);
+               ctx.moveTo(posXVehicule, posYVehicule);
+               ctx.rect(posXVehicule, posYVehicule,1,1);
+                ctx.strokeStyle = "blue";
+                ctx.stroke();
+        }
+
+
+        loadJSON(buildMap);
+
+
+
+
+    </script>
+    <title>Traffic Control V2</title>
+
+</head>
+
+<body>
+
+    <canvas id="mon_canvas" width="1000" height="1000" style="border:1px solid">
+    </canvas>
+    <button onclick="generatePositionVehicules()">Pop Cars</button>
+</body>
+
+</html>

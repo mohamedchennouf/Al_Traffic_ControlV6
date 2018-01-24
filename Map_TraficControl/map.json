@@ -14,6 +14,7 @@
                 "name": "Rue Flaminus Raiberti",
                 "highway": "residential",
                 "waterway": null,
+                "vertical":true,
                 "aerialway": null,
                 "barrier": null,
                 "man_made": null,
@@ -49,6 +50,7 @@
         {
             "type": "Feature",
             "properties": {
+                "vertical":true,
                 "osm_id": "4663117",
                 "name": "Rue Flaminus Raiberti",
                 "highway": "residential",
@@ -80,6 +82,7 @@
         {
             "type": "Feature",
             "properties": {
+                "vertical":true,
                 "osm_id": "4663117",
                 "name": "Rue Flaminus Raiberti",
                 "highway": "residential",
@@ -111,6 +114,7 @@
         {
             "type": "Feature",
             "properties": {
+                "vertical":true,
                 "osm_id": "4663117",
                 "name": "Rue Flaminus Raiberti",
                 "highway": "residential",
@@ -142,6 +146,7 @@
         {
             "type": "Feature",
             "properties": {
+                "vertical":true,
                 "osm_id": "4663117",
                 "name": "Rue Flaminus Raiberti",
                 "highway": "residential",
@@ -191,12 +196,8 @@
                         0
                     ],
                     [
-                        51,
-                        40
-                    ],
-                    [
-                        60,
-                        100
+                        55,
+                        21
                     ]
                 ]
             }
@@ -204,6 +205,35 @@
         {
             "type": "Feature",
             "properties": {
+                "vertical":true,
+                "osm_id": "4663117",
+                "name": "Rue Flaminus Raiberti",
+                "highway": "residential",
+                "waterway": null,
+                "aerialway": null,
+                "barrier": null,
+                "man_made": null,
+                "z_order": 3,
+                "other_tags": "\"ref:FR:FANTOIR\"=>\"060885340C\""
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        60,
+                        63
+                    ],
+                    [
+                        57,
+                        99
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "vertical":true,
                 "osm_id": "4663117",
                 "name": "Rue Flaminus Raiberti",
                 "highway": "residential",
@@ -235,6 +265,7 @@
         {
             "type": "Feature",
             "properties": {
+                "vertical":true,
                 "osm_id": "4663117",
                 "name": "Rue Flaminus Raiberti",
                 "highway": "residential",
@@ -266,6 +297,7 @@
         {
             "type": "Feature",
             "properties": {
+                "vertical":true,
                 "osm_id": "4663117",
                 "name": "Rue Flaminus Raiberti",
                 "highway": "residential",
@@ -293,6 +325,7 @@
         {
             "type": "Feature",
             "properties": {
+                "vertical":false,
                 "osm_id": "4663117",
                 "name": "Rue Flaminus Raiberti",
                 "highway": "residential",
@@ -320,6 +353,7 @@
         {
             "type": "Feature",
             "properties": {
+                "vertical":false,
                 "osm_id": "4663128",
                 "name": "Avenue Mirabeau",
                 "highway": "residential",
@@ -347,6 +381,7 @@
         {
             "type": "Feature",
             "properties": {
+                "vertical":false,
                 "osm_id": "4663128",
                 "name": "Avenue Mirabeau",
                 "highway": "residential",
@@ -382,6 +417,7 @@
         {
             "type": "Feature",
             "properties": {
+                "vertical":false,
                 "osm_id": "4663128",
                 "name": "Avenue Mirabeau",
                 "highway": "residential",
@@ -413,6 +449,7 @@
         {
             "type": "Feature",
             "properties": {
+                "vertical":false,
                 "osm_id": "4663128",
                 "name": "Avenue Mirabeau",
                 "highway": "residential",
@@ -440,6 +477,7 @@
         {
             "type": "Feature",
             "properties": {
+                "vertical":false,
                 "osm_id": "4663128",
                 "name": "Avenue Mirabeau",
                 "highway": "residential",
@@ -475,6 +513,7 @@
         {
             "type": "Feature",
             "properties": {
+                "vertical":false,
                 "osm_id": "4663128",
                 "name": "Avenue Mirabeau",
                 "highway": "residential",
@@ -502,6 +541,7 @@
         {
             "type": "Feature",
             "properties": {
+                "vertical":false,
                 "osm_id": "4663128",
                 "name": "Avenue Mirabeau",
                 "highway": "residential",
@@ -529,6 +569,7 @@
         {
             "type": "Feature",
             "properties": {
+                "vertical":false,
                 "osm_id": "4663128",
                 "name": "Avenue Mirabeau",
                 "highway": "residential",
@@ -556,6 +597,7 @@
         {
             "type": "Feature",
             "properties": {
+                "vertical":false,
                 "osm_id": "4663128",
                 "name": "Avenue Mirabeau",
                 "highway": "residential",
@@ -591,6 +633,7 @@
         {
             "type": "Feature",
             "properties": {
+                "vertical":false,
                 "osm_id": "4663128",
                 "name": "Avenue Mirabeau",
                 "highway": "residential",

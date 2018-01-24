@@ -1,3 +1,3 @@
 node server dans le repertoir puis    aller sur localhost:8080
 
-changer les path
+changer les paths dans server.js

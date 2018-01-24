@@ -48,15 +48,30 @@
 
 
             c.addEventListener("click", function (event) {
-                var posX = event.pageX / 10;
-                var posY = event.pageY / 10
-                ctx.moveTo(posX, posY);
-                ctx.arc(posX, posY, 0.5, 0, 2 * Math.PI);
-                ctx.strokeStyle = "red";
-                ctx.stroke();
-                //alert(event.pageX + " , " + event.pageY);
+
+                var evenement = confirm("Voulez vous ajouter un evenement ?");
+                if (evenement == true) {
+                    var posX = event.pageX / 10;
+                    var posY = event.pageY / 10;
+                    var imageEvent = document.getElementById("event");
+                    ctx.drawImage(imageEvent, posX, posY, 3, 3);
+                }
             });
 
+            generateFeu();
+
+            function generateFeu() {
+                ctx.drawImage(imageLight, 10, 10, 5, 5);
+                var imageLight = document.getElementById("lightgreen");
+                var rues = myData.features;
+                var posX_feu = 0;
+                var posY_feu = 0;
+                rues.forEach(function (rue, rueIndex) {
+                    posX_feu = rue.geometry.coordinates[0][0];
+                    posY_feu = rue.geometry.coordinates[0][1];
+                    ctx.drawImage(imageLight, posX_feu, posY_feu, 5, 5);
+                });
+            }
         }
 
         function getRandomInt(max) {
@@ -68,6 +83,10 @@
             max = Math.floor(max);
             return Math.floor(Math.random() * (max - min)) + min;
         }
+
+
+
+
 
         function generatePositionVehicules() {
             var c = document.getElementById("mon_canvas");
@@ -81,7 +100,7 @@
             var image = document.getElementById("source");
             var image2 = document.getElementById("source2");
             var decalage = 1;
-            
+
             if (rueDirection) {
                 console.log(true);
                 //ctx.rotate(Math.PI / 2);
@@ -91,9 +110,14 @@
                 console.log(false);
                 ctx.drawImage(image, posXVehicule - decalage, posYVehicule - decalage, 3, 2);
             }
-
         }
 
+        function PopCars() {
+            var nbCar = prompt("Combien de véhicule souhaite aller à cette évènement ?");
+            for (var i = 0; i < nbCar; i++) {
+                generatePositionVehicules();
+            }
+        }
 
 
 
@@ -123,9 +147,18 @@
         <div style="display:none;">
             <img id="source2" src="car1" width="100" height="100">
         </div>
-        
+        <div style="display:none;">
+            <img id="event" src="event" width="100" height="100">
+        </div>
+        <div style="display:none;">
+            <img id="lightgreen" src="lightgreen" width="100" height="100">
+        </div>
+        <div style="display:none;">
+            <img id="lightred" src="lightred" width="100" height="100">
+        </div>
+
     </canvas>
-    <button onclick="generatePositionVehicules()">Pop Cars</button>
+    <button onclick="PopCars()">Pop Cars</button>
 </body>
 
 </html>

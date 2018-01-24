@@ -12,5 +12,14 @@ app.get('/car0', function(req, res) {
 app.get('/car1', function(req, res) {
      res.sendFile('C:/Users/chennouf/Desktop/AL_Traffic_ControlV6/Map_TraficControl/image/car1.png');
  });
+app.get('/event', function(req, res) {
+     res.sendFile('C:/Users/chennouf/Desktop/AL_Traffic_ControlV6/Map_TraficControl/image/event.png');
+ });
+app.get('/lightred', function(req, res) {
+     res.sendFile('C:/Users/chennouf/Desktop/AL_Traffic_ControlV6/Map_TraficControl/image/Light_red.png');
+ });
+app.get('/lightgreen', function(req, res) {
+     res.sendFile('C:/Users/chennouf/Desktop/AL_Traffic_ControlV6/Map_TraficControl/image/Light_green.png');
+ });
  app.listen(8080); 
 

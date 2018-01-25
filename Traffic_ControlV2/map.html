@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <div>
+
+
+        <canvas id="mon_canvas" width="1000" height="1000">
+
+            <div style="display:none;">
+                <img id="event" src="./image/event.png" width="100" height="100">
+            </div>
+
+        </canvas>
+
+        <div>
+            <button onclick="PopCars()">Pop Cars</button>
+            <button onclick="runAnimation()">Run Simulation</button>
+        </div>
+
+
+
+        <div id="stats" width="500" height="500">
+            <h1>Statistique</h1>
+        </div>
+
+
+
+    </div>
+
+
+
+
+</body>
+
+<head>
+    <style>
+        #mon_canvas {
+            border: 1px solid;
+            background-color: rgb(23, 156, 6);
+        }
+
+        #stats {
+            border: 1px solid;
+            background-color: rgb(218, 219, 218);
+            color: black;
+            display: block;
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+    <script src="model/Nice.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/event.js"></script>
+    <script src="js/voiture.js"></script>
+    <script src="js/light.js"></script>
+    <script src="lib/statistique.js"></script>
+
+    <script>
+
+        function drawMap(model) {
+            zoom();
+            drawRoute(model);
+            drawLights(model);
+        }
+
+        drawMap(Nice);
+        makeEvent();
+
+        function PopCars() {
+            var nbCar = prompt("Combien de véhicule souhaite aller à cette évènement ?");
+            for (var i = 0; i < nbCar; i++) {
+                generateVehicules(Nice);
+
+            }
+            redrawVehicules();
+        }
+
+
+        function runAnimation() {
+            runAnimationLights();
+            runAnimationCars();
+        }
+
+
+        function runAnimationLights() {
+            setInterval(changeState, 3000);
+        }
+
+        function runAnimationCars() {
+            setInterval(runCars, 200);
+            StatistiqueTimer();
+        }
+
+        function runCars() {
+            drawRoute(Nice);
+            redrawLights();
+            drawEvents();
+            roule();
+        }
+
+    </script>
+    <title>Traffic Control V2</title>
+
+</head>
+
+
+
+</html>

@@ -7,18 +7,18 @@ function generateVehicules(data) {
     var posIndex = getRandomInt(data.features[rueIndex].geometry.coordinates.length);
     var posXVehicule = data.features[rueIndex].geometry.coordinates[posIndex][0];
     var posYVehicule = data.features[rueIndex].geometry.coordinates[posIndex][1];
-    voitures.push({posX:posXVehicule, posY:posYVehicule, direction: rueDirection });
+    voitures.push({ posX: posXVehicule, posY: posYVehicule, direction: rueDirection });
 }
 
 
 
-function redrawVehicules(){
+function redrawVehicules() {
     voitures.forEach(function (voiture) {
         drawVehicule(voiture);
     });
 }
 
-function drawVehicule(vehicule){
+function drawVehicule(vehicule) {
     var c = document.getElementById("mon_canvas");
     var ctx = c.getContext("2d");
     var decalage = 1;
@@ -42,8 +42,40 @@ function getRandomInt(max) {
 
 function roule() {
     voitures.forEach(function (voiture) {
-       voiture.posX += 1; 
+        if(isIntersection(voiture)){
+            if(getRandomInt(2)===0){
+                changeDirection(voiture)
+            }
+        }
+        //console.log(voiture.direction);
+        if (voiture.direction){
+            voiture.posY += 1;
+        }else{
+            voiture.posX += 1;
+        }
+            
+    
         //vehicule.posX
     });
     redrawVehicules();
+}
+
+
+function changeDirection(voiture){
+    if(voiture.direction===true){
+        voiture.direction = false;
+    }else{
+        voiture.direction = true;
+    }
+}
+
+function isIntersection(voiture) {
+    var intersection = false;
+    if(voiture.posX % 10 < 1){
+        intersection = true;
+    }
+    if(voiture.posY % 10 < 1){
+        intersection = true;
+    }
+    return intersection;
 }

@@ -8,12 +8,21 @@ function generateVehicules(data) {
     var posXVehicule = data.features[rueIndex].geometry.coordinates[posIndex][0];
     var posYVehicule = data.features[rueIndex].geometry.coordinates[posIndex][1];
     var sens = null;
+    var rand = getRandomInt(2);
     if (rueDirection) {
-        sens = 'bas';
+        if (rand === 0) {
+            sens = 'bas';
+        } else {
+            sens = 'haut';
+        }
     } else {
-        sens = 'droite';
+        if (rand === 0) {
+            sens = 'droite';
+        } else {
+            sens = 'gauche';
+        }
     }
-    voitures.push({ posX: posXVehicule, posY: posYVehicule, direction: rueDirection, sens: sens });
+    voitures.push({ posX: posXVehicule, posY: posYVehicule, sens: sens });
 }
 
 
@@ -33,10 +42,16 @@ function drawVehicule(vehicule) {
     imageCar.onload = function () {
         ctx.drawImage(imageCar, vehicule.posX - decalage, vehicule.posY - decalage, 2, 2);
     };
-    if (vehicule.direction) {
-        imageCar.src = './image/car1.png';
+    if (vehicule.sens === 'bas') {
+        imageCar.src = './image/carBas.png';
+    }
+    else if (vehicule.sens === 'haut') {
+        imageCar.src = './image/carHaut.png';
+    }
+    else if (vehicule.sens === 'gauche') {
+        imageCar.src = './image/carGauche.png';
     } else {
-        imageCar.src = './image/car0.png';
+        imageCar.src = './image/carDroite.png';
     }
 }
 

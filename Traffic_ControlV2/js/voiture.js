@@ -7,12 +7,19 @@ function generateVehicules(data) {
     var posIndex = getRandomInt(data.features[rueIndex].geometry.coordinates.length);
     var posXVehicule = data.features[rueIndex].geometry.coordinates[posIndex][0];
     var posYVehicule = data.features[rueIndex].geometry.coordinates[posIndex][1];
-    voitures.push({ posX: posXVehicule, posY: posYVehicule, direction: rueDirection });
+    var sens = null;
+    if (rueDirection) {
+        sens = 'bas';
+    } else {
+        sens = 'droite';
+    }
+    voitures.push({ posX: posXVehicule, posY: posYVehicule, direction: rueDirection, sens: sens });
 }
 
 
 
 function redrawVehicules() {
+    //console.log(voitures.length);
     voitures.forEach(function (voiture) {
         drawVehicule(voiture);
     });
@@ -38,44 +45,106 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
-
-
 function roule() {
+    var destination = null;
+    if (Event.length > 0) {
+        destination = Event[0];
+    }
     voitures.forEach(function (voiture) {
-        if(isIntersection(voiture)){
-            if(getRandomInt(2)===0){
-                changeDirection(voiture)
+        if (destination === null) {
+            if (isIntersection(voiture, Nice)) {
+                changeSensRandom(voiture);
+            }
+        } else {
+            if (isIntersection(voiture, Nice)) {
+                changeSensEvent(voiture, Event[0]);
             }
         }
-        //console.log(voiture.direction);
-        if (voiture.direction){
-            voiture.posY += 1;
-        }else{
-            voiture.posX += 1;
-        }
-            
-    
-        //vehicule.posX
+        avance(voiture);
     });
     redrawVehicules();
 }
 
 
-function changeDirection(voiture){
-    if(voiture.direction===true){
-        voiture.direction = false;
-    }else{
-        voiture.direction = true;
+function changeSensEvent(voiture, event) {
+    if (voiture.posX > event.posX) {
+        voiture.sens = 'gauche';
+    }
+    else if (voiture.posX < event.posX) {
+        voiture.sens = 'droite';
+    }
+    else if (voiture.posY > event.posY) {
+        voiture.sens = 'haut';
+    }
+    else if (voiture.posY < event.posY) {
+        voiture.sens = 'bas';
     }
 }
 
-function isIntersection(voiture) {
+function changeSensRandom(voiture) {
+    var rand = getRandomInt(4);
+    if (rand === 0) {
+        voiture.sens = 'droite';
+    }
+    else if (rand === 1) {
+        voiture.sens = 'gauche';
+    }
+    else if (rand === 2) {
+        voiture.sens = 'bas';
+    }
+    else if (rand === 3) {
+        voiture.sens = 'haut';
+    }
+}
+
+function avance(voiture) {
+    if (voiture.sens === 'droite') {
+        console.log('droite');
+        voiture.posX += 1;
+    }
+    if (voiture.sens === 'gauche') {
+        console.log('gauche');
+        voiture.posX = voiture.posX - 1;
+    }
+    if (voiture.sens === 'bas') {
+        console.log('bas');
+        voiture.posY += 1;
+    }
+    if (voiture.sens === 'haut') {
+        console.log('haut');
+        voiture.posY = voiture.posY - 1;
+    }
+}
+
+
+
+function isIntersection(voiture, data) { //TODO
     var intersection = false;
-    if(voiture.posX % 10 < 1){
-        intersection = true;
-    }
-    if(voiture.posY % 10 < 1){
-        intersection = true;
-    }
+    var rues = data.features;
+    rues.forEach(function (rue, rueIndex) {
+        var position = rue.geometry.coordinates;
+        position.forEach(function (pos, posIndex) {
+            var distance = dist(voiture.posX, voiture.posY, pos[0], pos[1]);
+            if (distance < 1) {
+                intersection = true;
+            }
+        });
+    });
     return intersection;
+}
+
+
+function diff(num1, num2) {
+    if (num1 > num2) {
+        return (num1 - num2);
+    } else {
+        return (num2 - num1);
+    }
+}
+
+function dist(x1, y1, x2, y2) {
+    var deltaX = diff(x1, x2);
+    var deltaY = diff(y1, y2);
+    var dist = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
+    return (dist);
 }

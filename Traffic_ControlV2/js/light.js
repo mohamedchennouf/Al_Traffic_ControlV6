@@ -1,7 +1,7 @@
 
 var lights = [];
 function buildFeux(data) {
-    var intersection = trouverIntersection();
+    /*var intersection = trouverIntersection();
     intersection.forEach(function (interSection, interSectionIndex) {
         var rand = getRandomInt(2);
         if (rand === 0) {
@@ -9,21 +9,19 @@ function buildFeux(data) {
         } else {
             lights.push({ posX: interSection[0], posY: interSection[1], state: 'green' });
         }
-    });
+    });*/
     var rues = data.features;
     rues.forEach(function (rue, rueIndex) {
-        var rand = getRandomInt(2);
-        var position = rue.geometry.coordinates;
-        var posX_feu = position[0][0];
-        var posY_feu = position[0][1];
-        var posX_feu2 = position[position.length - 1][0];
-        var posY_feu2 = position[position.length - 1][1];
-        if (rand === 0) {
-            lights.push({ posX: posX_feu, posY: posY_feu, state: 'red' });
-            lights.push({ posX: posX_feu2, posY: posY_feu2, state: 'green' });
-        } else {
-            lights.push({ posX: posX_feu, posY: posY_feu, state: 'green' });
-            lights.push({ posX: posX_feu2, posY: posY_feu2, state: 'red' });
+        if (rue.properties.vertical) {
+            var position = rue.geometry.coordinates;
+            position.forEach(function (posLight, posIndex) {
+                var rand = getRandomInt(2);
+                if(rand===0){
+                    lights.push({ posX: posLight[0], posY: posLight[1], state: 'red' });
+                }else{
+                    lights.push({ posX: posLight[0], posY: posLight[1], state: 'green' });
+                }
+            });
         }
     });
     return lights;
@@ -38,7 +36,7 @@ function drawLights(data) {
     redrawLights();
 }
 
-function redrawLights(){
+function redrawLights() {
     lights.forEach(function (light) {
         drawLight(light);
     });

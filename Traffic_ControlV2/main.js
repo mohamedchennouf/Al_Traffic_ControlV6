@@ -29,6 +29,7 @@ function runAnimationLights() {
 
 function runAnimationCars() {
     setInterval(mainloop, 200);
+    //mainloop();
 }
 
 

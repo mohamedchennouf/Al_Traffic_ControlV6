@@ -1,0 +1,13 @@
+#mon_canvas {
+    border: 1px solid;
+    background-color: rgb(23, 156, 6);
+}
+
+#stats {
+    border: 1px solid;
+    background-color: rgb(218, 219, 218);
+    color: black;
+    display: block;
+    width: 300px;
+    height: 300px;
+}

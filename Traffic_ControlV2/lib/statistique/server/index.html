@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>Simple login</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">  </script>
+    <script>
+      $(document).ready(function(){
+        var time ,nbvoitures;
+        $("#sendStats").click(function(){
+          time=$("#time").val();
+          nbvoitures=$("#nbvoitures").val();
+          $.post("http://localhost:7500/statistique",{time: time,nbvoitures : nbvoitures}, function(data){
+            if(data==='done')
+              {
+                alert("Bravo");
+              }
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Statistique traffic controle</h1>
+    <input type="time" id="time" size="40"><br>
+    <input type="voitures" id="nbvoitures" size="40"><br>
+    <input type="button" id="sendStats" value="Send Stats">
+  </body>
+</html>

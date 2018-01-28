@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<body>
+
+    <h1>Mes Statisitique</h1>
+    <div id="nb">Nombre vehicules : 100</div>
+    <div id="nb">Temps : 00:19</div>
+    <div id="piechart"></div>
+    <div id="piechart2"></div>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script type="text/javascript">
+        // Load google charts
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart1);
+        google.charts.setOnLoadCallback(drawChart2);
+
+        // Draw the chart and set the chart values
+        function drawChart1() {
+            var data = google.visualization.arrayToDataTable([
+                ['Task', 'voitures entrain rouler'],
+                ['roule', 98],
+                ['arreter', 2]
+            ]);
+
+            // Optional; add a title and set the width and height of the chart
+            var options = { 'title': "Pourcentage de Voiture a l'arret durant Simulation", 'width': 700, 'height': 700 };
+
+            // Display the chart inside the <div> element with id="piechart"
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+        }
+
+         // Draw the chart and set the chart values
+        function drawChart2() {
+            var data = google.visualization.arrayToDataTable([
+                ['Task', 'temps feux'],
+                ['feux long', 80],
+                ['feux rapide', 20]
+            ]);
+
+            // Optional; add a title and set the width and height of the chart
+            var options = { 'title': "Type de feux sur la map", 'width': 700, 'height': 700 };
+
+            // Display the chart inside the <div> element with id="piechart"
+            var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+            chart.draw(data, options);
+        }
+    </script>
+
+</body>
+
+</html>

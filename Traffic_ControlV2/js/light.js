@@ -1,15 +1,6 @@
 
 var lights = [];
 function buildFeux(data) {
-    /*var intersection = trouverIntersection();
-    intersection.forEach(function (interSection, interSectionIndex) {
-        var rand = getRandomInt(2);
-        if (rand === 0) {
-            lights.push({ posX: interSection[0], posY: interSection[1], state: 'red' });
-        } else {
-            lights.push({ posX: interSection[0], posY: interSection[1], state: 'green' });
-        }
-    });*/
     var rues = data.features;
     rues.forEach(function (rue, rueIndex) {
         if (rue.properties.vertical) {
@@ -27,9 +18,6 @@ function buildFeux(data) {
     return lights;
 }
 
-function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max));
-}
 
 function drawLights(data) {
     buildFeux(data);
@@ -52,7 +40,6 @@ function changeState() {
             light.state = 'green';
         }
     });
-    //redrawLights();
 }
 
 
@@ -72,31 +59,3 @@ function drawLight(light) {
 
 
 
-
-
-
-
-
-
-
-
-// TODO  avoir un vrai algo pour plus tard
-function trouverIntersection() {
-    var intersection = [];
-    intersection.push([10, 10]);
-    intersection.push([70, 10]);
-    intersection.push([90, 10]);
-    intersection.push([30, 20]);
-    intersection.push([30, 35]);
-    intersection.push([90, 35]);
-    intersection.push([30, 40]);
-    intersection.push([70, 40]);
-    intersection.push([40, 40]);
-    intersection.push([37, 60]);
-    intersection.push([30, 70]);
-    intersection.push([80, 70]);
-    intersection.push([40, 80]);
-    intersection.push([90, 80]);
-    intersection.push([70, 88]);
-    return intersection;
-}

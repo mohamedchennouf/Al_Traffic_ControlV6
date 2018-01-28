@@ -28,4 +28,10 @@ function zoom(){
 
 
 
+function AddStreet(){
+    console.log('TODO');
+}
 
+function RemoveStreet(){
+    console.log('TODO');
+}

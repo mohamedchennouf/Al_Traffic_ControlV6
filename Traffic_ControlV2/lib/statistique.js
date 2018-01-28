@@ -25,6 +25,20 @@ var measureFPS = function (newTime) {
 
 function StatistiqueTimer() {
     var d = new Date();
-    document.getElementById("dataStatistique").innerHTML = d.toLocaleTimeString();
-   // measureFPS(time);
+    document.getElementById("time").innerHTML = d.toLocaleTimeString();
+}
+
+function StatistiqueData(){
+    if(flag < 200 ){
+        document.getElementById("dataStatistique").innerHTML = 'wait the end of simulation' ;
+    }else{ //TODO display the real data in the canvas
+        document.getElementById("dataStatistique").innerHTML = 'data are present in http://localhost:7500/statistique ';
+    }
+    
+}
+
+
+function UI_Statistique(){
+    StatistiqueTimer();
+    StatistiqueData();
 }

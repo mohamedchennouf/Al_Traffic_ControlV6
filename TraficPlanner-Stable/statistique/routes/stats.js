@@ -4,9 +4,29 @@ var router = express.Router();
 
 var fs = require('fs')
 
-//var simulation = readJsonFile("../../Storage/Simulation/simulation.json");
-var simulation = readJsonFile("Storage/simulation.json");
+var options = { // appli simu conf
+  host: 'localhost',
+  port: 3002,
+  path: '/read'
+};
+
+var simulation ;
+var http = require('http');
+
+
+
+//var simulation = readJsonFile("Storage/simulation.json");
 var write = function (err, res){
+  http.get(options, function(res) {
+    //console.log("Got response: " + res.statusCode + " data : " + res.data );
+    res.on('data', function (chunk) {
+      simulation = JSON.parse(chunk);
+      //console.log('BODY: ' + chunk);
+    });
+  }).on('error', function(e) {
+    console.log("Got error: " + e.message);
+  });
+  console.log("Simmue " + JSON.stringify(simulation));
   var datetime = '\n[ \n\t{\n\t\t"Simulate" : ' + Date.now()+ ',\n\t\t';
   var stat = datetime + '"Stat" : ' + calculwithJsonArray(simulation) + '\n\t}\n'+ ']' +'\n';
   if(err){
@@ -38,18 +58,10 @@ router.get('/',[stat], function(req, res, next) {
 var calculwithJsonArray = function (p) {
   var stats = 0;
   for(var i = 0 ; i < p.length; i++){
-    var time = p[i].timeStop - p[i].timeStart;
+    var time = p[i].timeStop + p[i].timeStart;
     stats+=time*p[i].distance / p[i].nbRoads;
   }
   return (stats)/(p.length * 1000);
-}
-
-function readJsonFile(file) {
-
-  var contents = fs.readFileSync(file);
-
-  return JSON.parse(contents);
-
 }
 
 module.exports = router;

@@ -1,28 +1,3 @@
-var myData = 'toto va a la plage';
-//var http = require('http');
-
-var options = {
-  host: 'localhost',
-  port: 3001,
-  path: '/stats'
-};
-
-function sendData(data) {
-  console.log("Send Data");
-  /*http.get(options, function(res) {
-    console.log("Got response: " + res.statusCode + " data : " + data );
-    res.on('data', function (chunk) {
-      console.log('BODY: ' + chunk);
-    });
-  }).on('error', function(e) {
-    console.log("Got error: " + e.message);
-  });
-
-  res.send("Succes");
-  */
-}
-
-
 function drawMap(model) {
     zoom();
     drawRoute(model);
@@ -79,39 +54,30 @@ function mainloop() {
     if (flag >= 50) {
         clearInterval(intervalAnimationsCars);
         clearInterval(intervalAnimationsLights);
-        sendData(myData);
+        storeData(10);
+       // sendData(myData);
     }
     if (voitures.length === 0) {
         flag = 200;
     }
 }
 
-
-
-function sendData3(data) {
-    var http = new XMLHttpRequest();
-    var url = "http://localhost:7500";
-
-    var params = JSON.stringify({ data: data });
-    http.open("POST", url, true);
-
-    //Send the proper header information along with the request
-    http.setRequestHeader("Content-type", "application/json");
-
-    http.onreadystatechange = function () {//Call a function when the state changes.
-        //document.getElementById("log").innerHTML = status;
-        if (http.readyState == XMLHttpRequest.DONE && http.status == 200) {
-            console.log('oui');
-        }
-    };
-    http.send(JSON.stringify({ data: data }));
+function storeData(nb) {
+  console.log("Store");
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", "http://localhost:3002/store", true);
+  xhr.onload = function (e) {
+    if (xhr.readyState === 4) {
+      console.log("readyState ")
+      if (xhr.status === 200) {
+        console.log(xhr.responseText);
+      } else {
+        console.error(xhr.statusText);
+      }
+    }
+  };
+  xhr.onerror = function (e) {
+    console.error(xhr.statusText);
+  };
+  xhr.send(null);
 }
-
-function sendData2(dataStatistiaue) {
-    $.post("http://localhost:7500", {data:dataStatistiaue}, function (data) {
-        if (data === 'done') {
-            alert("ouiiii");
-        }
-    });
-}
-

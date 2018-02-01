@@ -13,10 +13,7 @@ var options = { // appli simu conf
 var simulation ;
 var http = require('http');
 
-
-
-//var simulation = readJsonFile("Storage/simulation.json");
-var write = function (err, res){
+var getDataSimulation = function () {
   http.get(options, function(res) {
     //console.log("Got response: " + res.statusCode + " data : " + res.data );
     res.on('data', function (chunk) {
@@ -26,22 +23,30 @@ var write = function (err, res){
   }).on('error', function(e) {
     console.log("Got error: " + e.message);
   });
-  console.log("Simmue " + JSON.stringify(simulation));
-  var datetime = '\n[ \n\t{\n\t\t"Simulate" : ' + Date.now()+ ',\n\t\t';
-  var stat = datetime + '"Stat" : ' + calculwithJsonArray(simulation) + '\n\t}\n'+ ']' +'\n';
-  if(err){
+}
 
-  }else{
-    fs.appendFile('Storage/'+Date.now()+'stat.json',stat , function (err) {
-      if (err) {
-        // append failed
-      } else {
-        console.log("succes write");
-        // done
-      }
-    })
+
+
+//var simulation = readJsonFile("Storage/simulation.json");
+var write = function (err, res){
+  getDataSimulation();
+  if(simulation!=null){
+    console.log("Simmue " + JSON.stringify(simulation));
+    var datetime = '\n{\n\t\t"Simulate" : ' + Date.now()+ ',\n\t\t';
+    var stat = datetime + '"Stat" : ' + calculwithJsonArray(simulation) + '\n}\n,\n';
+    if(err){
+
+    }else{
+      fs.appendFile('Storage/stat.json', stat , function (err) {
+        if (err) {
+          // append failed
+        } else {
+          console.log("succes write");
+          // done
+        }
+      })
+    }
   }
-  //}
 
 
 }

@@ -17,7 +17,7 @@ var storeData = function() {
   }
   console.log(dataCars);
   var data = JSON.stringify(dataCars);
-  fs.appendFile('Storage/simu.json',data , function (err) {
+  fs.writeFile('Storage/simu.json',data , function (err) {
     if (err) {
       console.log(err);
     } else {

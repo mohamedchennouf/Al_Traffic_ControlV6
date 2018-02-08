@@ -1,7 +1,19 @@
 doctype html
-html(lang='en-US')
+html
+  head
+    script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
+    script.
+      $(function() {
+          $.getJSON('statistique.json', function(data) {
+                $.each(data.stats, function(i, f) {
+                        var tblRow = "<tr>" + "<td>" + f.Simulate + "</td>" +
+                        "<td>" + f.Stat + "</td>" +  "</tr>"
+                        $(tblRow).appendTo("#userdata tbody");
+                });
+          });
+      });
   body
-    h1 Mes Statisitique
+  h1 Mes Statisitique
     #nb Nombre vehicules : 100
     #nt Temps : 00:19
     #piechart
@@ -38,3 +50,10 @@ html(lang='en-US')
         var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
         chart.draw(data, options);
       }
+    .wrapper
+      .profile
+        table#userdata(border='10')
+          thead
+            th SimulationID
+            th Statistiques
+          tbody

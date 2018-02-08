@@ -30,7 +30,7 @@ function runAnimationLights() {
 }
 
 function runAnimationCars() {
-    intervalAnimationsCars = setInterval(mainloop, 200);
+    intervalAnimationsCars = setInterval(mainloop,200);
 }
 
 
@@ -51,7 +51,7 @@ function mainloop() {
     roule();
     //measureFPS();
     flag++;
-    if (flag >= 50) {
+    if (flag >= 200) {
         clearInterval(intervalAnimationsCars);
         clearInterval(intervalAnimationsLights);
         storeData(10);

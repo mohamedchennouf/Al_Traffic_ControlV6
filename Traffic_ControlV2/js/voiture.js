@@ -204,32 +204,38 @@ function randSens(){
 function avance(voiture) {
     //console.log('avant X :' + voiture.posX);
     //console.log('avant Y :' + voiture.posY);
-    if (voiture.sens === 'droite') {
+    var canvas, w, h;
+    canvas = document.querySelector("#mon_canvas");
+    w = canvas.width;
+    h = canvas.height;
+
+    if ((voiture.sens === 'droite') && (voiture.posX<w)) {
         voiture.posX += 1;
         if (voiture.coef !== 0) {
 
             voiture.posY = (voiture.coef * voiture.posX) + voiture.origine;
         }
     }
-    if (voiture.sens === 'gauche') {
+    if ((voiture.sens === 'gauche')&& (voiture.posX > 0)){
         voiture.posX = voiture.posX - 1;
         if (voiture.coef !== 0) {
             voiture.posY = (voiture.coef * voiture.posX) + voiture.origine;
         }
     }
-    if (voiture.sens === 'bas') {
+    if ((voiture.sens === 'bas')&& (voiture.posY<h)){
         voiture.posY += 1;
         if (voiture.coef !== 0) {
             voiture.posX = (voiture.posY - voiture.origine) / voiture.coef;
         }
     }
-    if (voiture.sens === 'haut') {
+    if ((voiture.sens === 'haut')&&(voiture.posY > 0)) {
         voiture.posY = voiture.posY - 1;
         if (voiture.coef !== 0) {
             voiture.posX = (voiture.posY - voiture.origine) / voiture.coef;
         }
     }
     demiTour(voiture);
+    
     //console.log('--apres X :' + voiture.posX);
     //console.log('--apres Y :' + voiture.posY);
 }

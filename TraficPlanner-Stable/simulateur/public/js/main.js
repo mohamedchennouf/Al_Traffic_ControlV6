@@ -81,3 +81,4 @@ function storeData(nb) {
   };
   xhr.send(null);
 }
+

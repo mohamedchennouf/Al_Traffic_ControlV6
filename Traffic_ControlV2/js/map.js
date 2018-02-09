@@ -26,7 +26,11 @@ function zoom(){
     ctx.scale(10, 10);
 }
 
-
+function drawMap(model) {
+    zoom();
+    drawRoute(model);
+    drawLights(model);
+}
 
 function AddStreet(){
     console.log('TODO');

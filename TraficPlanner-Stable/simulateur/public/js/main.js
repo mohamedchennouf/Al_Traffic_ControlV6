@@ -5,7 +5,7 @@ function drawMap(model) {
 }
 
 drawMap(Nice);
-makeEvent();
+//makeEvent();
 
 function PopCars() {
     var nbCar = prompt("Combien de véhicule souhaite aller à cette évènement ?");

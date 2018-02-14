@@ -15,6 +15,7 @@ function buildFeux(data) {
             });
         }
     });
+    
     return lights;
 }
 
@@ -58,4 +59,5 @@ function drawLight(light) {
 }
 
 
+module.exports ={lights,buildFeux,drawLights,redrawLights,changeState,drawLight}
 

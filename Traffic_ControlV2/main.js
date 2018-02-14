@@ -1,11 +1,5 @@
 var myData = 'toto va a la plage';
 
-function drawMap(model) {
-    zoom();
-    drawRoute(model);
-    drawLights(model);
-}
-
 drawMap(Nice);
 makeEvent();
 
@@ -28,7 +22,7 @@ var intervalAnimationsLights;
 var flag = 1;
 
 function runAnimationLights() {
-    intervalAnimationsLights = setInterval(changeState, 3000);
+    intervalAnimationsLights = setInterval(changeState, 300);
 }
 
 function runAnimationCars() {

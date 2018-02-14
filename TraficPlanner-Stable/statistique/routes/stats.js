@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+
+
 var fs = require('fs')
 
 var options = { // appli simu conf
@@ -37,9 +39,10 @@ var readFile = function(){
        // console.log(temp);
         res1.push(JSON.stringify(temp));
        // console.log(res);
-      })
-    })
+      });
+    });
     res = '{"stats" : [' + res1.toString() + ']}';
+    //res1 = [];
     fs.writeFile('public/statistique.json', res , function (err) {
       if (err) {
         // append failed
@@ -50,7 +53,7 @@ var readFile = function(){
     })
     console.log(JSON.parse(res));
   });
-
+  
 
 }
 

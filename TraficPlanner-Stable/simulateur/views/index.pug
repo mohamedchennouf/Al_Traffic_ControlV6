@@ -35,14 +35,14 @@ html
         button.btn.btn-primary(type='button' onclick='ChangeModel()') Change Map
         br
         br
-        form(action='http://localhost:3001')
-          input(type='submit', value='View Stats')
+        form(target='_blank' action='http://localhost:3001/stats' method='get')
+          input(type='submit', value='View Simulation Stats')
 
   head
     link(rel='stylesheet', type='text/css', href='/stylesheets/main.css')
     link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
-    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js') 
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
     script(src='utils/utils.js')
     script(src='model/Nice.js')
     script(src='model/Nice2.js')
@@ -51,4 +51,5 @@ html
     script(src='js/voiture.js')
     script(src='js/light.js')
     script(src='js/main.js')
+    script(src='js/GlobalVariables.js')
     title Traffic Control V2

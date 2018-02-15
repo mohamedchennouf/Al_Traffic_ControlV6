@@ -1,5 +1,6 @@
 var model = null;
 
+
 function drawMap(model) {
     zoom();
     drawRoute(model);

@@ -3,53 +3,45 @@ html
   head
     script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js')
     script.
-      $(function() {
-          $.getJSON('statistique.json', function(data) {
-                $.each(data.stats, function(i, f) {
-                        var tblRow = "<tr>" + "<td>" + f.Simulate + "</td>" +
-                        "<td>" + f.Stat + "</td>" +  "</tr>"
-                        $(tblRow).appendTo("#userdata tbody");
-                });
-          });
-      });
+
   body
   h1 Mes Statisitique
-    #nb Nombre vehicules : 100
-    #nt Temps : 00:19
+    #nb Nombre simulations totale
     #piechart
-    #piechart2
     script(type='text/javascript', src='https://www.gstatic.com/charts/loader.js')
     script(type='text/javascript').
+
+      var nb = 0;
+      $(function () {
+        $.getJSON('statistique.json', function (data) {
+            nb = data.stats.length;
+          $.each(data.stats, function (i, f) {
+            var tblRow = "<tr>" + "<td>" + f.Simulate + "</td>" +
+              "<td>" + f.Stat + "</td>" + "</tr>"
+            $(tblRow).appendTo("#userdata tbody");
+          });
+        });
+      });
       // Load google charts
-      google.charts.load('current', { 'packages': ['corechart'] });
+      google.charts.load('current', {'packages': ['corechart']});
       google.charts.setOnLoadCallback(drawChart1);
-      google.charts.setOnLoadCallback(drawChart2);
+      //google.charts.setOnLoadCallback(drawChart2);
       // Draw the chart and set the chart values
       function drawChart1() {
+          console.log(nb);
         var data = google.visualization.arrayToDataTable([
-          ['Task', 'voitures entrain rouler'],
-          ['roule', 98],
-          ['arreter', 2]
+          ['Task', 'Simulation'],
+          ['stat total', nb],
+
+
         ]);
         // Optional; add a title and set the width and height of the chart
-        var options = { 'title': "Pourcentage de Voiture a l'arret durant Simulation", 'width': 700, 'height': 700 };
+        var options = {'title': "Nombre Total des Simulations", sliceVisibilityThreshold: .2};
         // Display the chart inside the <div> element with id="piechart"
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
         chart.draw(data, options);
       }
       // Draw the chart and set the chart values
-      function drawChart2() {
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'temps feux'],
-          ['feux long', 80],
-          ['feux rapide', 20]
-        ]);
-        // Optional; add a title and set the width and height of the chart
-        var options = { 'title': "Type de feux sur la map", 'width': 700, 'height': 700 };
-        // Display the chart inside the <div> element with id="piechart"
-        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
-        chart.draw(data, options);
-      }
     .wrapper
       .profile
         table#userdata(border='10')

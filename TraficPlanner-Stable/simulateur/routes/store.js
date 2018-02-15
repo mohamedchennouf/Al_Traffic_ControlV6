@@ -8,8 +8,8 @@ var storeData = function() {
   var dataCars = [];
   for (var i = 0; i < 10; i++) {
     var car = {
-      "timeStart": Date.now() + Math.random() * 50,
-      "timeStop": Date.now() + 100 + Math.random() ,
+      "timeStart": Date.now(),
+      "timeStop": Date.now()+ 1000,
       "distance": i + 1 * Math.random() * 10,
       "nbRoads": i + 1 * Math.random() * 20
     }

@@ -29,28 +29,38 @@ var getDataSimulation = function () {
 var res1 = [];
 var readFile = function(){
 
-  var res = '{"stats": ['
+  var res ;
+  var result_Final = '{"stats": [';
+
   fs.readdir(pathFile, (err, files) => {
+    var taille = files.length;
+    var i = 0;
     files.forEach(file => {
-      //console.log(file);
-      fs.readFile(pathFile+file, (err, data) => {
+      console.log(file);
+
+    /*fs.readFile(pathFile+file, (err, data) => {
         if (err) throw err;
         var temp = JSON.parse(data);
        // console.log(temp);
         res1.push(JSON.stringify(temp));
        // console.log(res);
-      });
-    });
-    res = '{"stats" : [' + res1.toString() + ']}';
-    //res1 = [];
-    fs.writeFile('public/statistique.json', res , function (err) {
-      if (err) {
-        // append failed
-      } else {
-        console.log("succes write");
-        // done
+      });*/
+      var data = fs.readFileSync(pathFile+file);
+      //res.push(data);
+      res = data.toString();
+      if(i < taille-1) {
+        result_Final += res + ",";
+        i++;
+      }else{
+        result_Final += res;
       }
-    })
+    });
+    result_Final+= ']}';
+    console.log(result_Final);
+   // res = '{"stats" : [' + data.toString() + ']}';
+    //res1 = [];
+    fs.writeFileSync('public/statistique.json', result_Final , 'utf8');
+
     console.log(JSON.parse(res));
   });
 
@@ -60,7 +70,7 @@ var readFile = function(){
 var write = function (err, res){
   getDataSimulation();
   if(simulation!=null){
-    var datetime = '{"Simulate" : '  + Date.now() + ',';
+    var datetime = '{"Simulate" : '  + Date.now().toString() + ',';
     var stat = datetime + '"Stat" : ' + calculwithJsonArray(simulation) + '}';
     if(err){
     }else{
@@ -74,17 +84,18 @@ var write = function (err, res){
       })
     }
   }
-  readFile();
+  //readFile();
 }
 
 var stat = function (req, res, next) {
   write();
+  readFile();
   next()
 }
 /* GET users listing. */
 router.get('/',[stat], function(req, res, next) {
-
-  res.send(req.body.data);
+  res.redirect('http://localhost:3001/');
+  //res.send(req.body.data);
 });
 
 

@@ -1,16 +1,17 @@
+var model = null;
+
 function drawMap(model) {
     zoom();
     drawRoute(model);
     drawLights(model);
 }
 
-drawMap(Nice);
-//makeEvent();
+
 
 function PopCars() {
     var nbCar = prompt("Combien de véhicule souhaite aller à cette évènement ?");
     for (var i = 0; i < nbCar; i++) {
-        generateVehicules(Nice);
+        generateVehicules(model);
     }
     redrawVehicules();
 }
@@ -30,7 +31,7 @@ function runAnimationLights() {
 }
 
 function runAnimationCars() {
-    intervalAnimationsCars = setInterval(mainloop,200);
+    intervalAnimationsCars = setInterval(mainloop, 200);
 }
 
 
@@ -41,21 +42,21 @@ function clearCanvas() {
     h = canvas.height;
     ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, w, h);
+    drawRoute(model);
 }
 
 function mainloop() {
     clearCanvas();
-    drawRoute(Nice);
+    drawRoute(model);
     redrawLights();
     drawEvents();
     roule();
-    //measureFPS();
     flag++;
     if (flag >= 200) {
         clearInterval(intervalAnimationsCars);
         clearInterval(intervalAnimationsLights);
         storeData(10);
-       // sendData(myData);
+        // sendData(myData);
     }
     if (voitures.length === 0) {
         flag = 200;
@@ -63,22 +64,41 @@ function mainloop() {
 }
 
 function storeData(nb) {
-  console.log("Store");
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", "http://localhost:3002/store", true);
-  xhr.onload = function (e) {
-    if (xhr.readyState === 4) {
-      console.log("readyState ")
-      if (xhr.status === 200) {
-        console.log(xhr.responseText);
-      } else {
+    console.log("Store");
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://localhost:3002/store", true);
+    xhr.onload = function (e) {
+        if (xhr.readyState === 4) {
+            console.log("readyState ")
+            if (xhr.status === 200) {
+                console.log(xhr.responseText);
+            } else {
+                console.error(xhr.statusText);
+            }
+        }
+    };
+    xhr.onerror = function (e) {
         console.error(xhr.statusText);
-      }
-    }
-  };
-  xhr.onerror = function (e) {
-    console.error(xhr.statusText);
-  };
-  xhr.send(null);
+    };
+    xhr.send(null);
 }
 
+
+
+function ChangeModel(){
+    var select = document.getElementById("selectModel");
+    var selectedModel = select.options[select.selectedIndex].value;
+    if(selectedModel === 'Nice Est'){
+        model = Nice;
+
+    }else{
+         model = Nice2;
+    }
+    clearCanvas();
+    drawRoute(model);
+    drawLights(model);
+}
+
+
+ChangeModel();
+drawMap(model);

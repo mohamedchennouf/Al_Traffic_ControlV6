@@ -1,28 +1,45 @@
 doctype html
 html
   body
-    div
-      canvas#mon_canvas(width='1100', height='1100')
-        div(style='display:none;')
-          img#event(src='./image/event.png', width='100', height='100')
-      div
-        button(onclick='PopCars()') Pop Cars
-        button(onclick='runAnimation()') Run Simulation
-        button(onclick='AddStreet()') Add Street
-        button(onclick='RemoveStreet()') Remove Street
+    #titre Simulateur de traffic routier
+
+    #conteneur
+      #surfaceCanvas
+        canvas#mon_canvas(width='1000', height='1000')
+          div(style='display:none;')
+            img#event(src='./image/event.png', width='100', height='100')
+      #surfaceActions
+        button.btn.btn-primary(type='button' onclick='PopCars()' ) Pop Cars
+        br
+        br
+        button.btn.btn-primary(type='button' onclick='runAnimation()') Run Simulation
+        br
+        br
+        button.btn.btn-primary(type='button' onclick='AddStreet()') Add Street
+        br
+        br
+        button.btn.btn-primary(type='button' onclick='RemoveStreet()') Remove Street
+        br
+        br
+        select#selectModel
+          option(value='Nice Est') Nice Est
+          option(value='Nice Ouest') Nice Ouest
+        br
+        br
+        button.btn.btn-primary(type='button' onclick='ChangeModel()') Change Map
+        br
+        br
         form(action='http://localhost:3001')
           input(type='submit', value='View Stats')
-      #logger
-      #stats(width='500', height='500')
-        h1 Statistique
-        #fps
-        #time
-        #dataStatistique
+
   head
-    link(rel='stylesheet', type='text/css', href='main.css')
+    link(rel='stylesheet', type='text/css', href='/stylesheets/main.css')
+    link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js') 
     script(src='utils/utils.js')
     script(src='model/Nice.js')
+    script(src='model/Nice2.js')
     script(src='js/map.js')
     script(src='js/event.js')
     script(src='js/voiture.js')

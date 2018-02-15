@@ -2,6 +2,7 @@
 var voitures = [];
 var voituresArriver = [];
 var NBruesPossible = 10;
+var cpt = 0;
 
 
 function generateVehicules(data) {
@@ -26,6 +27,8 @@ function generateVehicules(data) {
         }
     }
     voitures.push({ posX: posXVehicule, posY: posYVehicule, sens: sens, coef: null, origine: null });
+    //Vehicule(cpt,posXVehicule, posYVehicule,sens, null, null)
+    cpt++;
 }
 
 
@@ -66,11 +69,11 @@ function roule() {
     }
     voitures.forEach(function (voiture, voitureIndex) {
         if (destination === null) {
-            if (isIntersection(voiture, Nice)) {
+            if (isIntersection(voiture, model)) {
                 changeSensRandom(voiture);
             }
         } else {
-            if (isIntersection(voiture, Nice)) {
+            if (isIntersection(voiture, model)) {
                 changeSensEvent(voiture, Event[0]);
             }
         }
@@ -90,6 +93,38 @@ function roule() {
 }
 
 
+function roule() {
+    var destination = null;
+    if (Event.length > 0) {
+        destination = Event[0];
+    }
+    voitures.forEach(function (voiture, voitureIndex) {
+        if (destination === null) {
+            if (isIntersection(voiture, model)) {
+                changeSensRandom(voiture);
+            }
+        } else {
+            if (isIntersection(voiture, model)) {
+                changeSensEvent(voiture, Event[0]);
+            }
+        }
+
+        if (destination !== null) {
+            if (dist(voiture.posX, voiture.posY, Event[0].posX, Event[0].posY) <= 4) {
+                voiture.posX = Event[0].posX;
+                voiture.posY = Event[0].posY;
+                voituresArriver.push(voiture);
+                voitures.splice(voitureIndex, 1);
+            }
+        }
+        avance(voiture);
+
+    });
+    redrawVehicules();
+}
+
+
+
 function changeSensEvent(voiture, event) {
     var nextIntersection = null;
     var coef = null;
@@ -106,7 +141,7 @@ function changeSensEvent(voiture, event) {
     else if (voiture.posY < event.posY) {
         voiture.sens = 'bas';
     }
-    nextIntersection = trouveProchaineIntersection(voiture.sens, voiture.posX, voiture.posY, Nice);
+    nextIntersection = trouveProchaineIntersection(voiture.sens, voiture.posX, voiture.posY, model);
     coef = coefficientDirecteur(voiture.posX, voiture.posY, nextIntersection.posX, nextIntersection.posY);
     origine = ordonnneeOrigine(voiture.posX, voiture.posY, coef);
     voiture.coef = coef;
@@ -130,7 +165,7 @@ function changeSensRandom(voiture) {
     else if (rand === 3) {
         voiture.sens = 'haut';
     }
-    nextIntersection = trouveProchaineIntersection(voiture.sens, voiture.posX, voiture.posY, Nice);
+    nextIntersection = trouveProchaineIntersection(voiture.sens, voiture.posX, voiture.posY, model);
     coef = coefficientDirecteur(voiture.posX, voiture.posY, nextIntersection.posX, nextIntersection.posY);
     origine = ordonnneeOrigine(voiture.posX, voiture.posY, coef);
     voiture.coef = coef;
@@ -271,7 +306,7 @@ function demiTour(voiture) {
     } else if (voiture.posY >= h) {
         voiture.sens = 'haut';
     }
-    nextIntersection = trouveProchaineIntersection(voiture.sens, voiture.posX, voiture.posY, Nice);
+    nextIntersection = trouveProchaineIntersection(voiture.sens, voiture.posX, voiture.posY, model);
     coef = coefficientDirecteur(voiture.posX, voiture.posY, nextIntersection.posX, nextIntersection.posY);
     origine = ordonnneeOrigine(voiture.posX, voiture.posY, coef);
     voiture.coef = coef;

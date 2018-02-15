@@ -39,4 +39,4 @@ function getRandomMinMax(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-module.exports = {getRandomMinMax,diff,ordonnneeOrigine,coefficientDirecteur,getRandomInt,dist,normeSoustraction};
+//module.exports = {getRandomMinMax,diff,ordonnneeOrigine,coefficientDirecteur,getRandomInt,dist,normeSoustraction};

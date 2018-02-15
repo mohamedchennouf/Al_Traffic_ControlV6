@@ -1,0 +1,41 @@
+
+#titre{
+  color: #00B7FF;
+  font-style: italic;
+  font-size: 30px;
+  text-align: center;
+  padding: 20px;
+}
+
+#mon_canvas{
+  
+}
+
+#conteneur{
+    display: flex;
+}
+
+#surfaceCanvas{
+    width: 70%;
+}
+
+#surfaceActions{
+    width: 30%;
+}
+
+body {
+  background: navy !important; 
+}
+
+#redLight {
+  width: 5px;
+  height: 5px;
+  background: url(./../image/lightred.png) ;
+}
+
+#greenLight {
+  width: 20px;
+  height: 20px;
+  background : url(./../image/lightgreen.png);
+  background-color: black;
+}

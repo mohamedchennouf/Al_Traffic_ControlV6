@@ -2,8 +2,6 @@
 var Event = [];
 
 function makeEvent() {
-    console.log(flagModifCarte);
-    if (!flagModifCarte) {
         var c = document.getElementById("mon_canvas");
         var ctx = c.getContext("2d");
         c.addEventListener("click", function (event) {
@@ -15,8 +13,9 @@ function makeEvent() {
                 drawEvent({ posX: posX, posY: posY });
             }
         });
-    }
 }
+
+ makeEvent();
 
 function drawEvents() {
     Event.forEach(function (ev) {

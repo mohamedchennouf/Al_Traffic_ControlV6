@@ -43,22 +43,20 @@ function drawVehicule(vehicule) {
     var c = document.getElementById("mon_canvas");
     var ctx = c.getContext("2d");
     var decalage = 1;
-    var imageCar = new Image();
-    imageCar.onload = function () {
-        ctx.drawImage(imageCar, vehicule.posX - decalage, vehicule.posY - decalage, 2, 2);
-    };
-    if (vehicule.sens === 'bas') {
-        imageCar.src = './image/carBas.png';
+    var imageCar = null;
+     if (vehicule.sens === 'bas') {
+        imageCar = document.getElementById("carBas");
     }
     else if (vehicule.sens === 'haut') {
-        imageCar.src = './image/carHaut.png';
+        imageCar = document.getElementById("carHaut");
     }
     else if (vehicule.sens === 'gauche') {
-        imageCar.src = './image/carGauche.png';
+        imageCar = document.getElementById("carGauche");
     } else {
-        imageCar.src = './image/carDroite.png';
+        imageCar = document.getElementById("carDroite");
     }
-}
+        ctx.drawImage(imageCar, vehicule.posX - decalage, vehicule.posY - decalage, 2, 2);
+    }
 
 
 

@@ -25,8 +25,8 @@ var getDataSimulation = function () {
     console.log("Got error: " + e.message);
   });
 }
-var res1 = [];
 
+var res1 = [];
 var readFile = function(){
 
   var res = '{"stats": ['
@@ -53,7 +53,7 @@ var readFile = function(){
     })
     console.log(JSON.parse(res));
   });
-  
+
 
 }
 
@@ -92,10 +92,10 @@ router.get('/',[stat], function(req, res, next) {
 var calculwithJsonArray = function (p) {
   var stats = 0;
   for(var i = 0 ; i < p.length; i++){
-    var time = p[i].timeStop + p[i].timeStart;
-    stats+=time*p[i].distance / p[i].nbRoads;
+    var time = p[i].timeStop - p[i].timeStart;
+    stats+=time+p[i].distance / p[i].nbRoads;
   }
-  return (stats)/(p.length * 1000);
+  return Math.ceil(stats/1000) + Math.random() * 10;
 }
 
 module.exports = router;

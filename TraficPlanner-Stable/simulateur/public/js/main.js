@@ -27,11 +27,11 @@ var intervalAnimationsLights;
 var flag = 1;
 
 function runAnimationLights() {
-    intervalAnimationsLights = setInterval(changeState, 3000);
+    intervalAnimationsLights = setInterval(changeState, 2000);
 }
 
 function runAnimationCars() {
-    intervalAnimationsCars = setInterval(mainloop, 200);
+    intervalAnimationsCars = setInterval(mainloop, 40);
 }
 
 
@@ -52,14 +52,14 @@ function mainloop() {
     drawEvents();
     roule();
     flag++;
-    if (flag >= 200) {
+    if (flag >= 500) {
         clearInterval(intervalAnimationsCars);
         clearInterval(intervalAnimationsLights);
         storeData(10);
         // sendData(myData);
     }
     if (voitures.length === 0) {
-        flag = 200;
+        flag = 500;
     }
 }
 
@@ -102,3 +102,5 @@ function ChangeModel(){
 
 ChangeModel();
 drawMap(model);
+
+

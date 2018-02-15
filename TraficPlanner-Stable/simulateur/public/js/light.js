@@ -55,7 +55,7 @@ function changeState() {
 function drawLight(light) {
     if (light !== null) {
         var ctx = document.getElementById('mon_canvas').getContext('2d');
-        var imageLight = new Image();
+        /*var imageLight = new Image();
         imageLight.onload = function () {
             ctx.drawImage(imageLight, light.posX, light.posY, 2, 2);
         };
@@ -63,10 +63,20 @@ function drawLight(light) {
             imageLight.src = './image/lightgreen.png';
         } else {
             imageLight.src = './image/lightred.png';
+        }*/
+
+        var imageLight = null;
+         if (light.state === 'green') {
+           imageLight =  document.getElementById("green");
+        } else {
+           imageLight =  document.getElementById("red");
         }
+        ctx.drawImage(imageLight, light.posX, light.posY, 2, 2);
     }
 }
 
 
 //module.exports ={lights,buildFeux,drawLights,redrawLights,changeState,drawLight}
+
+
 

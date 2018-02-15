@@ -240,39 +240,48 @@ function randSens() {
 }
 
 function avance(voiture) {
-    //console.log('avant X :' + voiture.posX);
-    //console.log('avant Y :' + voiture.posY);
-    if (voiture.sens === 'droite') {
-        voiture.posX += 1;
-        if (voiture.coef !== 0) {
+    if (arrete(voiture)) {
+    } else {
 
-            voiture.posY = (voiture.coef * voiture.posX) + voiture.origine;
+        if (voiture.sens === 'droite') {
+            voiture.posX += 1;
+            if (voiture.coef !== 0) {
+                voiture.posY = (voiture.coef * voiture.posX) + voiture.origine;
+            }
         }
-    }
-    if (voiture.sens === 'gauche') {
-        voiture.posX = voiture.posX - 1;
-        if (voiture.coef !== 0) {
-            voiture.posY = (voiture.coef * voiture.posX) + voiture.origine;
+        if (voiture.sens === 'gauche') {
+            voiture.posX = voiture.posX - 1;
+            if (voiture.coef !== 0) {
+                voiture.posY = (voiture.coef * voiture.posX) + voiture.origine;
+            }
         }
-    }
-    if (voiture.sens === 'bas') {
-        voiture.posY += 1;
-        if (voiture.coef !== 0) {
-            voiture.posX = (voiture.posY - voiture.origine) / voiture.coef;
+        if (voiture.sens === 'bas') {
+            voiture.posY += 1;
+            if (voiture.coef !== 0) {
+                voiture.posX = (voiture.posY - voiture.origine) / voiture.coef;
+            }
         }
-    }
-    if (voiture.sens === 'haut') {
-        voiture.posY = voiture.posY - 1;
-        if (voiture.coef !== 0) {
-            voiture.posX = (voiture.posY - voiture.origine) / voiture.coef;
+        if (voiture.sens === 'haut') {
+            voiture.posY = voiture.posY - 1;
+            if (voiture.coef !== 0) {
+                voiture.posX = (voiture.posY - voiture.origine) / voiture.coef;
+            }
         }
+        demiTour(voiture);
     }
-    demiTour(voiture);
-    //console.log('--apres X :' + voiture.posX);
-    //console.log('--apres Y :' + voiture.posY);
 }
 
 
+
+function arrete(voiture) {
+    var retour = false;
+    lights.forEach(function (light) {
+        if (dist(voiture.posX, voiture.posY, light.posX, light.posY) <= 1 && light.state === 'red') {
+            retour = true;
+        }
+    });
+    return retour;
+}
 
 function isIntersection(voiture, data) { //TODO
     var intersection = false;

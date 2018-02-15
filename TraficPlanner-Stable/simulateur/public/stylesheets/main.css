@@ -8,8 +8,32 @@
 }
 
 #mon_canvas{
-  
+  z-index: 50;
+  opacity: 1;
+  transition: all 0.75s ease-in-out;
 }
+
+
+#mon_canva.fade {
+  z-index: 50;
+  opacity: 0;
+  transition: all 0.75s ease-in-out;
+}
+
+
+#green{
+  z-index: 150;
+  opacity: 1;
+  transition: all 0.75s ease-in-out;
+}
+
+#red{
+  z-index: 150;
+  opacity: 1;
+  transition: all 0.75s ease-in-out;
+}
+
+
 
 #conteneur{
     display: flex;

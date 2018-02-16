@@ -141,7 +141,7 @@ var Nice = {
             "properties": {
                 "vertical":true,
                 "osm_id": "4663117",
-                "name": "Rue Flaminus Raiberti",
+                "name": "Rue tirewe",
                 "highway": "residential",
                 "waterway": null,
                 "aerialway": null,
@@ -205,7 +205,7 @@ var Nice = {
             "properties": {
                 "vertical":true,
                 "osm_id": "4663117",
-                "name": "Rue Flaminus Raiberti",
+                "name": "Rue Rerti",
                 "highway": "residential",
                 "waterway": null,
                 "aerialway": null,
@@ -261,7 +261,7 @@ var Nice = {
             "properties": {
                 "vertical":true,
                 "osm_id": "4663117",
-                "name": "Rue Flaminus Raiberti",
+                "name": "Rue Plosa",
                 "highway": "residential",
                 "waterway": null,
                 "aerialway": null,
@@ -325,7 +325,7 @@ var Nice = {
             "properties": {
                 "vertical":true,
                 "osm_id": "4663117",
-                "name": "Rue Flaminus Raiberti",
+                "name": "Rue Folodo",
                 "highway": "residential",
                 "waterway": null,
                 "aerialway": null,
@@ -357,7 +357,7 @@ var Nice = {
             "properties": {
                 "vertical":true,
                 "osm_id": "4663117",
-                "name": "Rue Flaminus Raiberti",
+                "name": "Rue Ferta",
                 "highway": "residential",
                 "waterway": null,
                 "aerialway": null,
@@ -397,7 +397,7 @@ var Nice = {
             "properties": {
                 "vertical":true,
                 "osm_id": "4663117",
-                "name": "Rue Flaminus Raiberti",
+                "name": "Rue Flami",
                 "highway": "residential",
                 "waterway": null,
                 "aerialway": null,
@@ -457,7 +457,7 @@ var Nice = {
             "properties": {
                 "vertical":true,
                 "osm_id": "4663117",
-                "name": "Rue Flaminus Raiberti",
+                "name": "Rue Flai",
                 "highway": "residential",
                 "waterway": null,
                 "aerialway": null,
@@ -517,7 +517,7 @@ var Nice = {
             "properties": {
                 "vertical":true,
                 "osm_id": "4663117",
-                "name": "Rue Flaminus Raiberti",
+                "name": "Rue Touraloi",
                 "highway": "residential",
                 "waterway": null,
                 "aerialway": null,
@@ -577,7 +577,7 @@ var Nice = {
             "properties": {
                 "vertical":false,
                 "osm_id": "4663117",
-                "name": "Rue Flaminus Raiberti",
+                "name": "Rue Flami",
                 "highway": "residential",
                 "waterway": null,
                 "aerialway": null,

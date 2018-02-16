@@ -40,7 +40,7 @@ function AddStreet() {
     model.features.push(newFeature);
     clearCanvas();
     drawRoute(model);
-    redrawLights();
+    drawLights(model);
     
 }
 
@@ -63,5 +63,5 @@ function RemoveStreet() {
     console.log(model);
     clearCanvas();
     drawRoute(model);
-    redrawLights();
+    drawLights(model);
 }
